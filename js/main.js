@@ -1,25 +1,32 @@
 var tries = 0;
-var timer
+var timerVar = setInterval(countTimer, 1000);
+var totalSeconds = 0;
 
 function clickTry(){
   tries += 0.5;
   document.getElementById("attempts").innerHTML =  Math.ceil(tries);
 };
 
-function clearTry(){
-  tries = 0
+function clearGame(){
+  tries = 0;
   document.getElementById("attempts").innerHTML = tries;
+  totalSeconds = 0;
 };
 
-function startTimer(){
-  timer
-};
+function countTimer() {
+   ++totalSeconds;
+   var hour = Math.floor(totalSeconds /3600);
+   var minute = Math.floor((totalSeconds - hour*3600)/60);
+   var seconds = totalSeconds - (hour*3600 + minute*60);
+
+   document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+}
 
 function newGame(){
-  clearTry;
+  clearGame();
 };
 
-document.getElementById("").addEventListener("click", newGame);
+document.getElementById("new-game").addEventListener("click", newGame);
 document.getElementById("btn1").addEventListener("click", clickTry);
 document.getElementById("btn2").addEventListener("click", clickTry);
 document.getElementById("btn3").addEventListener("click", clickTry);
