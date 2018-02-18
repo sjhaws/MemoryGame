@@ -2,7 +2,13 @@ var tries = 0;
 var timerVar
 var totalSeconds = 0;
 var card;
-var cardNum
+var firstId;
+var secondId;
+var firstCardNum = null;
+var secondCardNum = null;
+var firstAnswer = null;
+var secondAnswer = null;
+var rightAnswers = 0;
 var answers = [
   "Dog",
   "Cat",
@@ -39,12 +45,11 @@ function clearGame(){
 
 function countTimer() {
    ++totalSeconds;
-  //  var hour = Math.floor(totalSeconds /3600);
-  //  var minute = Math.floor((totalSeconds - hour*3600)/60);
-   var seconds = totalSeconds //- (hour*3600 + minute*60);
-   document.getElementById("timer").innerHTML = seconds;
-  //  document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
-}
+   var minute = Math.floor((totalSeconds)/60);
+   var seconds = totalSeconds;
+   var seconds = totalSeconds - (minute*60);
+   document.getElementById("timer").innerHTML = minute + ":" + seconds;
+};
 
 function newGame(){
   clearGame();
@@ -53,14 +58,52 @@ function newGame(){
 };
 
 function matchClick(){
-  cardNum = document.getElementById(this.id).innerHTML;
-  document.getElementById(this.id).classList.remove("btn-primary");
-  document.getElementById(this.id).classList.add("btn-info");
-  document.getElementById(this.id).innerHTML = answers[cardNum - 1]
-  document.getElementById(this.id).element.disabled = true;
+  if (firstCardNum === null){
+    firstId = this.id
+    firstCardNum = document.getElementById(firstId).innerHTML;
+    document.getElementById(firstId).classList.remove("btn-primary");
+    document.getElementById(firstId).classList.add("btn-info");
+    document.getElementById(firstId).innerHTML = answers[firstCardNum - 1]
+    firstAnswer = document.getElementById(firstId).innerHTML
+  }
+  else {
+    secondId = this.id
+    secondCardNum = document.getElementById(secondId).innerHTML;
+    document.getElementById(secondId).classList.remove("btn-primary");
+    document.getElementById(secondId).classList.add("btn-info");
+    document.getElementById(secondId).innerHTML = answers[secondCardNum - 1]
+    secondAnswer = document.getElementById(secondId).innerHTML
+    
+    if (firstAnswer != secondAnswer){
+      setTimeout(function(){
+      document.getElementById(firstId).classList.remove("btn-info");
+      document.getElementById(firstId).classList.add("btn-primary");
+      document.getElementById(firstId).innerHTML = firstCardNum
+      document.getElementById(secondId).classList.remove("btn-info");
+      document.getElementById(secondId).classList.add("btn-primary");
+      document.getElementById(secondId).innerHTML = secondCardNum
+      clickTry();
+      firstChoice = null;
+      secondChoice = null;
+      firstCardNum = null;
+      secondCardNum = null;
+      }, 3000)
+    }
+    else {
+      //disable winning pair
+      clickTry();
+      firstChoice = null;
+      secondChoice = null;
+      firstCardNum = null;
+      secondCardNum = null;
+      rightAnswers += 1
+      if (rightAnswers === 10){
+        alert("You Win!!")
+      }
 
-  // //if 
-  // clickTry();
+    }
+
+  }
 };
 
 document.getElementById("new-game").addEventListener("click", newGame);
