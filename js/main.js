@@ -4,6 +4,8 @@ var totalSeconds = 0;
 var card;
 var firstId;
 var secondId;
+var finalTime;
+var timerVar;
 var firstCardNum = null;
 var secondCardNum = null;
 var firstAnswer = null;
@@ -171,7 +173,7 @@ function countTimer() {
 function newGame(){
   clearGame();
   document.getElementById("game-board").style = "display: block";
-  var timerVar = setInterval(countTimer, 1000);
+  timerVar = setInterval(countTimer, 1000);
 };
 
 function buttonDisableAll(){
@@ -238,8 +240,7 @@ function matchClick(){
     document.getElementById(secondId).innerHTML = answers[secondCardNum - 1]
     secondAnswer = document.getElementById(secondId).innerHTML
     document.getElementById(secondId).disabled = true;
-    // buttonDisableAll();
-    
+        
     if (firstAnswer != secondAnswer){
       setTimeout(function(){
       document.getElementById(firstId).classList.remove("btn-warning");
@@ -248,7 +249,6 @@ function matchClick(){
       document.getElementById(secondId).classList.remove("btn-warning");
       document.getElementById(secondId).classList.add("btn-primary");
       document.getElementById(secondId).innerHTML = secondCardNum;
-      // buttonUnDisableAll();
       document.getElementById(firstId).disabled = false;
       document.getElementById(secondId).disabled = false;
       clickTry();
@@ -263,7 +263,6 @@ function matchClick(){
       document.getElementById(firstId).classList.add("btn-info");
       document.getElementById(secondId).classList.remove("btn-warning");
       document.getElementById(secondId).classList.add("btn-info");
-      // buttonUnDisableAll()
       clickTry();
       setTimeout(function(){
       firstChoice = null;
@@ -271,10 +270,16 @@ function matchClick(){
       firstCardNum = null;
       secondCardNum = null;
       rightAnswers += 1
+
+
       if (rightAnswers === 10){
         alert("You Win!!")
+        finalTime = document.getElementById("timer").innerHTML;
+        clearInterval(timerVar);
+        document.getElementById("timer").innerHTML = "";
+        document.getElementById("timer").innerHTML = finalTime;
       }
-     }, 1000)
+     }, 500)
     }
 
   }
