@@ -1,0 +1,7 @@
+
+#game-board{
+  display: none;
+}
+#background{
+  background-image: url("./images/marble.jpg");
+}
