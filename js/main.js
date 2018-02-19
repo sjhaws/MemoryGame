@@ -189,7 +189,7 @@ function countTimer() {
    var minute = Math.floor((totalSeconds)/60);
    var seconds = totalSeconds;
    var seconds = totalSeconds - (minute*60);
-   document.getElementById("timer").innerHTML = minute + ":" + seconds;
+   document.getElementById("timer").innerHTML = "Min: " + minute + " Sec: " + seconds;
 };
 
 function newGame(){
