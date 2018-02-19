@@ -2522,7 +2522,7 @@ fieldset:disabled a.btn {
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #007bff;
+  background-color: #08407c;
   border-color: #007bff;
 }
 
@@ -2649,6 +2649,9 @@ fieldset:disabled a.btn {
   color: #212529;
   background-color: #ffc107;
   border-color: #ffc107;
+  height: 150px;
+  margin: 2px 2px 2px 2px;
+  border-radius: 5px;
 }
 
 .btn-warning:hover {

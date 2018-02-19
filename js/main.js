@@ -31,6 +31,7 @@ var answers = [
   "Horse",
   "Cow"
 ];
+var modulatedAnswers = []
 
 function clickTry(){
   tries += 1;
@@ -53,8 +54,55 @@ function countTimer() {
 
 function newGame(){
   clearGame();
+  // modulatedAnswers = shuffle(answers)
   //add array randomizer
   var timerVar = setInterval(countTimer, 1000);
+};
+
+function buttonDisableAll(){
+  document.getElementById("btn1").disabled = true;
+  document.getElementById("btn2").disabled = true;
+  document.getElementById("btn3").disabled = true;
+  document.getElementById("btn4").disabled = true;
+  document.getElementById("btn5").disabled = true;
+  document.getElementById("btn6").disabled = true;
+  document.getElementById("btn7").disabled = true;
+  document.getElementById("btn8").disabled = true;
+  document.getElementById("btn9").disabled = true;
+  document.getElementById("btn10").disabled = true;
+  document.getElementById("btn11").disabled = true;
+  document.getElementById("btn12").disabled = true;
+  document.getElementById("btn13").disabled = true;
+  document.getElementById("btn14").disabled = true;
+  document.getElementById("btn15").disabled = true;
+  document.getElementById("btn16").disabled = true;
+  document.getElementById("btn17").disabled = true;
+  document.getElementById("btn18").disabled = true;
+  document.getElementById("btn19").disabled = true;
+  document.getElementById("btn20").disabled = true;
+};
+
+function buttonUnDisableAll(){
+  document.getElementById("btn1").disabled = false;
+  document.getElementById("btn2").disabled = false;
+  document.getElementById("btn3").disabled = false;
+  document.getElementById("btn4").disabled = false;
+  document.getElementById("btn5").disabled = false;
+  document.getElementById("btn6").disabled = false;
+  document.getElementById("btn7").disabled = false;
+  document.getElementById("btn8").disabled = false;
+  document.getElementById("btn9").disabled = false;
+  document.getElementById("btn10").disabled = false;
+  document.getElementById("btn11").disabled = false;
+  document.getElementById("btn12").disabled = false;
+  document.getElementById("btn13").disabled = false;
+  document.getElementById("btn14").disabled = false;
+  document.getElementById("btn15").disabled = false;
+  document.getElementById("btn16").disabled = false;
+  document.getElementById("btn17").disabled = false;
+  document.getElementById("btn18").disabled = false;
+  document.getElementById("btn19").disabled = false;
+  document.getElementById("btn20").disabled = false;
 };
 
 function matchClick(){
@@ -62,7 +110,7 @@ function matchClick(){
     firstId = this.id
     firstCardNum = document.getElementById(firstId).innerHTML;
     document.getElementById(firstId).classList.remove("btn-primary");
-    document.getElementById(firstId).classList.add("btn-info");
+    document.getElementById(firstId).classList.add("btn-warning");
     document.getElementById(firstId).innerHTML = answers[firstCardNum - 1]
     firstAnswer = document.getElementById(firstId).innerHTML
   }
@@ -70,16 +118,17 @@ function matchClick(){
     secondId = this.id
     secondCardNum = document.getElementById(secondId).innerHTML;
     document.getElementById(secondId).classList.remove("btn-primary");
-    document.getElementById(secondId).classList.add("btn-info");
+    document.getElementById(secondId).classList.add("btn-warning");
     document.getElementById(secondId).innerHTML = answers[secondCardNum - 1]
     secondAnswer = document.getElementById(secondId).innerHTML
+    // buttonDisableAll();
     
     if (firstAnswer != secondAnswer){
       setTimeout(function(){
-      document.getElementById(firstId).classList.remove("btn-info");
+      document.getElementById(firstId).classList.remove("btn-warning");
       document.getElementById(firstId).classList.add("btn-primary");
       document.getElementById(firstId).innerHTML = firstCardNum
-      document.getElementById(secondId).classList.remove("btn-info");
+      document.getElementById(secondId).classList.remove("btn-warning");
       document.getElementById(secondId).classList.add("btn-primary");
       document.getElementById(secondId).innerHTML = secondCardNum
       clickTry();
@@ -87,9 +136,13 @@ function matchClick(){
       secondChoice = null;
       firstCardNum = null;
       secondCardNum = null;
-      }, 3000)
+      }, 1000)
     }
     else {
+      document.getElementById(firstId).classList.remove("btn-warning");
+      document.getElementById(firstId).classList.add("btn-info");
+      document.getElementById(secondId).classList.remove("btn-warning");
+      document.getElementById(secondId).classList.add("btn-info");
       //disable winning pair
       clickTry();
       firstChoice = null;
