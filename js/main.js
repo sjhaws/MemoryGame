@@ -78,6 +78,7 @@ function clickTry(){
 };
 
 function clearGame(){
+  rightAnswers = 0;
   tries = 0;
   document.getElementById("attempts").innerHTML = tries;
   totalSeconds = 0;
